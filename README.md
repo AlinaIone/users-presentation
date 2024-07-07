@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Frontend Interview Home Exercise
 
 ## Overview
@@ -66,3 +67,6 @@ Feel free to improve the styling of the components and the overall user interfac
 Feel free to extend functionality or enhance the user interface beyond the outlined requirements. Be prepared to discuss your implementation choices and the reasoning behind them during the interview.
 
 Best of luck! If you have any questions, please don't hesitate to reach out.
+=======
+# users-presentation
+>>>>>>> origin/main
