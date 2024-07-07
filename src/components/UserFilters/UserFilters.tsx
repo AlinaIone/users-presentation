@@ -9,9 +9,7 @@ export const UserQuantitySelector = () => {
   const [usersNumberValue, setInputValue] = useState<string>("");
   const [searchValue, setSearchValue] = useState<string>("");
   const dispatchUsers = useDispatch<AppDispatch>();
-  const numberOfUsers = useSelector(
-    (store: RootState) => store.users.numberOfUsers
-  );
+  const numberOfUsers = useSelector((store: RootState) => store.users.numberOfUsers);
   const users = useSelector((store: RootState) => store.users.usersInitiallyFetched)
 
 
@@ -39,14 +37,12 @@ export const UserQuantitySelector = () => {
  
 
   const handleFetchOnClick:() => void = useCallback(() => {
-    console.log('apasam si merge' )
+
     if (usersNumberValue) {
-      console.log("in selector");
       // Handling sync state update via normal reducers
-      dispatchUsers(
-        storeActions.users.setUsersNumber(Number(usersNumberValue))
-      );
+      dispatchUsers(storeActions.users.setUsersNumber(Number(usersNumberValue)));
       const requestArg = { usersNr: Number(usersNumberValue) };
+
       // Handling async state update via thunk function (and extraReducers)
       dispatchUsers(fetchUsers(requestArg));
       
@@ -56,7 +52,8 @@ export const UserQuantitySelector = () => {
   const clearInputs = useCallback(()=>{
     setInputValue("")
     setSearchValue("")
-    dispatchUsers(storeActions.users.setUsersList(users))},[dispatchUsers, users])
+    dispatchUsers(storeActions.users.setUsersList(users))
+  },[dispatchUsers, users])
   
 
   return (

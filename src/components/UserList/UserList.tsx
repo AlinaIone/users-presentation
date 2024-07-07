@@ -15,7 +15,6 @@ const UserList: React.FC = () => {
   useEffect(() => {
     if (hasFetchedData.current) return;
 
-    // async handling state via thunk and extraReducers
     // first fetch to the API and handle state/error via fetchUsers thunk
     if (status === "idle" && !users) {
       dispatchUsers(fetchUsers({}));
@@ -26,7 +25,6 @@ const UserList: React.FC = () => {
 
 
   useEffect(()=>{
-    // sync handling state via normal reducers
     // store the first API response only if the status of the async function was succeeded
     if(status === 'succeeded' && !usersInitiallyFetched) {
       dispatchUsers(storeActions.users.setFirstUsersList(users))
@@ -54,7 +52,6 @@ const UserList: React.FC = () => {
   } else if (status === "failed") {
     content = <div>{error}</div>;
   }
-
 
   return (   
     <>{content}</>

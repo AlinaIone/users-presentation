@@ -31,8 +31,7 @@ export const Input: FC<Props> = ({
   };
 
   return (
-    <div style={{/*display:'flex', flexDirection:'column',width:'100%', */
-    position: "relative"}}>
+    <div style={{position: "relative"}}>
       <StyledInput
        id="inputField"
         type="text"
