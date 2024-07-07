@@ -6,18 +6,11 @@ import { User } from "../../pages/types";
 import { Button } from "../Button/Button";
 import { CardContainer, Container, Controls, Header } from "./styles";
 
-// TODO: animatie la slide 
-// todo: lose focus input -> clear error
-// todo: error handling 
-
 export const UserSlideShow: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  const initialUsers = useSelector(
-    (store: RootState) => store.users.usersInitiallyFetched as User[]
-  );
+  const initialUsers = useSelector((store: RootState) => store.users.usersInitiallyFetched as User[]);
 
   useEffect(() => {
     if (isRunning && initialUsers) {
