@@ -1,10 +1,9 @@
-import { useCallback, useState, useEffect, useRef, useMemo } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, storeActions, RootState } from "../../store/store";
 import { fetchUsers } from "../../store/slices";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
-import debounce from 'lodash.debounce'
 
 export const UserFilters = () => {
   const [usersNumberValue, setInputValue] = useState<string>("");
@@ -13,8 +12,7 @@ export const UserFilters = () => {
   const numberOfUsers = useSelector((store: RootState) => store.users.numberOfUsers);
   const users = useSelector((store: RootState) => store.users.usersInitiallyFetched)
   const usersList = useSelector((store: RootState) => store.users.users)
-  const scrollRef = useRef<number>(0);
-  
+
 
   const verifyUsersNumberValue = (value: string) => {
     if (value === "" || /^[1-9]\d*$/.test(value)) {
@@ -30,7 +28,6 @@ export const UserFilters = () => {
     } else return false;
   };
 
- 
   const handleFetchOnClick = useCallback(() => {
     if (usersNumberValue) {
       // Handling sync state update via normal reducers
@@ -44,25 +41,16 @@ export const UserFilters = () => {
 
   useEffect(() => {
     if (usersList &&  usersList.length > 0) {
-      window.scrollTo(0, scrollRef.current);
+      window.scrollTo(0, 508);
     }
-  }, [usersList]);
-
-  const debouncedFetchUsers = useMemo(
-    () =>
-      debounce((value: string) => {
-        scrollRef.current = window.scrollY;
-        const requestArg = { usersNr: numberOfUsers, word: value };
-        dispatchUsers(fetchUsers(requestArg));
-      }, 300),
-    [dispatchUsers, numberOfUsers]
-  );
+  }, [ usersList]);
 
   useEffect(() => {
     if (searchValue) {
-      debouncedFetchUsers(searchValue);
+      const requestArg = { usersNr: numberOfUsers, word: searchValue };
+      dispatchUsers(fetchUsers(requestArg));
     }
-  }, [searchValue, debouncedFetchUsers]);
+  }, [searchValue,dispatchUsers, numberOfUsers]);
 
   const clearInputs = useCallback(()=>{
     setInputValue("")
