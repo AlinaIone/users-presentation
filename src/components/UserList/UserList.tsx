@@ -34,7 +34,7 @@ const UserList: React.FC = () => {
   let content;
 
   if (status === "loading") {
-    content = <div>Loading...</div>;
+    content = <div style={{margin:"auto", fontSize:'2rem'}}>Loading...</div>;
   } else if (status === "succeeded") {
     content = (
       <div
@@ -50,7 +50,7 @@ const UserList: React.FC = () => {
       </div>
     );
   } else if (status === "failed") {
-    content = <div>{error}</div>;
+    content = <div style={{margin:"auto", fontSize:'2rem', color:'red'}}>{error}</div>;
   }
 
   return (   
