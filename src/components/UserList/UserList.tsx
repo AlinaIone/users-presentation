@@ -14,7 +14,6 @@ const UserList: React.FC = () => {
 
   useEffect(() => {
     if (hasFetchedData.current) return;
-    console.log('in user List - 1 ')
     // first fetch to the API and handle state/error via fetchUsers thunk
     if (status === "idle" && !users) {
       dispatchUsers(fetchUsers({}));

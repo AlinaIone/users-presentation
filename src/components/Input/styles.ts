@@ -18,6 +18,7 @@ export const WarningMessage = styled.span`
   color:red;
   font-size: 0.9rem;
   margin-top: 5px;
+  margin-left: 20px;
   position: absolute;
   display:block;
 `
